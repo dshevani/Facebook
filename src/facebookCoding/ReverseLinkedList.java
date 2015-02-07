@@ -1,20 +1,16 @@
 package facebookCoding;
 
-
-
-public class ReverseList {
-	public static ListNode reverseList(ListNode head) {
+public class ReverseLinkedList {
+	public static ListNode reverseLinkedList(ListNode head) {
 		if (head == null || head.next == null)
 			return head;
-		ListNode prev = null;
-		ListNode newHead = head;
-		while (newHead.next != null) {
-			ListNode tmp = newHead.next;
-			newHead.next = prev;
-			prev = newHead;
-			newHead = tmp;
+		ListNode newHead = null;
+		while (head != null) {
+			ListNode tmp = head.next;
+			head.next = newHead;
+			newHead = head;
+			head = tmp;
 		}
-		newHead.next = prev;
 		return newHead;
 	}
 	public static void printList(ListNode head)
@@ -37,7 +33,8 @@ public class ReverseList {
 		n1.next = n2;
 		n2.next = n3;
 		printList(n1);
-		printList(reverseList(n1));
+		printList(reverseLinkedList(n1));
 		
 	}
+
 }
