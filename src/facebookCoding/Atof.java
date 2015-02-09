@@ -19,6 +19,7 @@ package facebookCoding;
  * ..
  * if overflow
  * return infinity
+ * http://shirleyisnotageek.blogspot.com/2015/02/implement-atof.html
  * @author shirleyyoung
  *
  */
