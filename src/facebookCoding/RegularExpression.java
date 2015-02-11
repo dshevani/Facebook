@@ -49,7 +49,7 @@ public class RegularExpression {
 		return false;
 	}
 	public static void main(String[] args) {
-		System.out.println(isMatch("aab", ".+a+b+"));
+		System.out.println(isMatch("abcbbc", "ab+c"));
 	}
 
 }
