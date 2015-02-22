@@ -26,7 +26,7 @@ public class findSecondMax {
 		return secondMax;
 	}
 	private static int[][] reverseTree(int[] array) {
-		int depth = (int)Math.ceil((double)Math.log((double)array.length)/Math.log(2.0)) + 1;
+		int depth = (int)Math.ceil(Math.log((double)array.length)/Math.log(2.0)) + 1;
 		int[][] tree = new int[depth][];
 		tree[0] = array;
 		for (int i = 1; i < depth; i++) {
