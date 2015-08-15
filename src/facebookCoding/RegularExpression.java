@@ -16,7 +16,7 @@ Input - Pattern - ab* data=c
 Output - false
  */
 public class RegularExpression {
-	public static boolean isMatch(String s, String p) {
+	/*public static boolean isMatch(String s, String p) {
 		if (p == null || s == null)
 			return false;
 		if (p.length() == 0)
@@ -47,9 +47,45 @@ public class RegularExpression {
 			index_s++;
 		}
 		return false;
+	}*/
+	public static boolean isMatch(String s, String p){
+		if(s == null)
+			return p == null;
+		if(p == null)
+			return false;
+		if(p.length() == 0)
+			return s.length() == 0;
+		if(s.equals(p))
+			return true;
+		if(p.length() == 1 || (p.charAt(1) != '*' && p.charAt(1) != '+')){
+			if(s.length() < 1 || (s.charAt(0) != p.charAt(0) && p.charAt(0) != '.'))
+				return false;
+			return isMatch(s.substring(1), p.substring(1));
+		}
+		if(p.charAt(1) == '+'){
+			//must match at least once
+			if(s.length() < 1 || (s.charAt(0) != p.charAt(0) && p.charAt(0) != '.'))
+				return false;
+			char match = s.charAt(0);
+			int index = 0;
+			while(index < s.length()){
+				if(s.charAt(index) != match)
+					break;
+				index++;
+			}
+			return isMatch(s.substring(index), p.substring(2));
+		}
+		int index_s = -1;
+		while(index_s < s.length() && (index_s < 0 || s.charAt(index_s) == p.charAt(0) || p.charAt(0) == '.')){
+			if(isMatch(s.substring(index_s + 1), p.substring(2)))
+				return true;
+			index_s++;
+		}
+		return false;
 	}
+	
 	public static void main(String[] args) {
-		System.out.println(isMatch("abcbbc", "ab+c"));
+		System.out.println(isMatch("abbbbc", "ab+v*c"));
 	}
 
 }
